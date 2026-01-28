@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Footer } from './country/shared/components/footer/footer';
+import { Footer } from './shared/components/footer/footer';
 import { TopMenu } from './country/components/top-menu/top-menu';
 
 @Component({
