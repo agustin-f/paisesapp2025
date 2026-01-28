@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { ByCapitalPage } from './country/components/by-capital-page/by-capital-page';
+import { HomePage } from './country/shared/pages/home-page/home-page';
 
 export const routes: Routes = [
   {
     path: '',
-    component: ByCapitalPage,
+    component: HomePage,
   },
 
   {
