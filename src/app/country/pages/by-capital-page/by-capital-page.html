@@ -1,2 +1,2 @@
-<country-search-input></country-search-input>
-<app-country-list></app-country-list>
+<country-search-input (value)="onSearch($event)"></country-search-input>
+<app-country-list [countries]="countries()"></app-country-list>
