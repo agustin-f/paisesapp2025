@@ -21,7 +21,11 @@
         </td>
         <td>{{ countrie.name }}</td>
         <td>{{ countrie.capital }}</td>
-        <td>{{ countrie.population }}</td>
+        <td>
+          <span class="badge badge-secondary">
+            {{ countrie.population | number}}
+          </span>
+        </td>
         <td>
           <a href="" class="link-primary">Mas información</a>
         </td>
