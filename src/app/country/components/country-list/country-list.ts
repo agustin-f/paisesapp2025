@@ -1,5 +1,5 @@
 import { Component, input, signal } from '@angular/core';
-import { RESTCountry } from '../../interfaces/rest-countries.interfaces';
+import { Country } from '../../interfaces/country.interface';
 
 @Component({
   selector: 'app-country-list',
@@ -8,5 +8,5 @@ import { RESTCountry } from '../../interfaces/rest-countries.interfaces';
   styleUrl: './country-list.scss',
 })
 export class CountryList {
-  countries = input.required<RESTCountry[]>();
+  countries = input.required<Country[]>();
 }

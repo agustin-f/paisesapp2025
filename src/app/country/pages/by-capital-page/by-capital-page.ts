@@ -1,7 +1,9 @@
+import { Country } from './../../interfaces/country.interface';
 import { Component, inject, signal } from '@angular/core';
 import { SearchInputComponent } from '../../components/country-search-input/country-search-input';
 import { CountryList } from '../../components/country-list/country-list';
-import { Country } from '../../services/country';
+import { CountryMapper } from '../../mappers/mapper.country';
+import { CountryService } from '../../services/country';
 import { RESTCountry } from '../../interfaces/rest-countries.interfaces';
 
 @Component({
@@ -11,11 +13,11 @@ import { RESTCountry } from '../../interfaces/rest-countries.interfaces';
   styleUrl: './by-capital-page.css',
 })
 export class ByCapitalPage {
-  countryService = inject(Country);
+  countryService = inject(CountryService);
 
   isLoading = signal(false);
   isError = signal<string | null>(null);
-  countries = signal<RESTCountry[]>([]);
+  countries = signal<Country[]>([]);
 
   onSearch(query: string) {
     if (this.isLoading()) {
@@ -27,7 +29,10 @@ export class ByCapitalPage {
     this.countryService.searchByCapital(query).subscribe((countries) => {
       this.isLoading.set(false);
       this.countries.set(countries);
-      console.log(countries);
+
+      const c = CountryMapper.mapRestCountryArrayToCountryArray;
+
+      console.log(c);
     });
   }
 }
