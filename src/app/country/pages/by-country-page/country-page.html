@@ -1,0 +1,5 @@
+<country-search-input (value)="onSearch($event)"></country-search-input>
+@if(isError()){
+<h3>{{isError()}}</h3>
+}@else{}
+<app-country-list [countries]="countries()"></app-country-list>
