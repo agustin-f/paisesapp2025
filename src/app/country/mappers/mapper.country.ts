@@ -3,16 +3,16 @@ import type { RESTCountry } from '../interfaces/rest-countries.interfaces';
 
 export class CountryMapper {
   // static RestCountry => Country
-  static mapRestCountryToCountry(restCountry: RESTCountry): Country {
+  static mapRestCountryToCountry(country: RESTCountry): Country {
     return {
-      capital: restCountry.capital.join(','),
-      cca2: restCountry.cca2,
-      flag: restCountry.flag,
-      flagSvg: restCountry.flags.svg,
-      name: restCountry.translations['spa'].common ?? 'No Spanish Name',
-      population: restCountry.population,
-      region: restCountry.region,
-      subRegion: restCountry.subregion,
+      cca2: country.cca2,
+      name: country.name.common,
+      capital: country.capital?.[0] ?? 'N/A',
+      region: country.region,
+      subRegion: country.subregion,
+      population: country.population,
+      flag: country.flag,
+      flagSvg: country.flags.svg,
     };
   }
 

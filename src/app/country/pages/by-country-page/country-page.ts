@@ -5,17 +5,16 @@ import { SearchInputComponent } from '../../components/country-search-input/coun
 import { CountryList } from '../../components/country-list/country-list';
 import { RouterLink } from '@angular/router';
 
-
 @Component({
   selector: 'app-country-page',
-  imports: [CountryList,SearchInputComponent],
+  imports: [CountryList, SearchInputComponent],
   templateUrl: './country-page.html',
   styleUrl: './country-page.css',
 })
 export class CountryPage {
   constructor(private countryservice: CountryService) {}
 
-   countryService = inject(CountryService);
+  countryService = inject(CountryService);
 
   isLoading = signal(false);
   isError = signal<string | null>(null);
