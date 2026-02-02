@@ -1,42 +1,32 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CountryService } from '../../services/country';
 import { Country } from '../../interfaces/country.interface';
-import { SearchInputComponent } from '../../components/country-search-input/country-search-input';
+import { NotFound } from '../../../shared/not-found/not-found';
+import { CountrySearchInputComponent } from '../../components/country-search-input/country-search-input';
 import { CountryList } from '../../components/country-list/country-list';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-country-page',
-  imports: [CountryList, SearchInputComponent],
   templateUrl: './country-page.html',
-  styleUrl: './country-page.css',
+  imports: [NotFound, CountrySearchInputComponent, CountryList],
 })
 export class CountryPage {
-  constructor(private countryservice: CountryService) {}
-
-  countryService = inject(CountryService);
-
-  isLoading = signal(false);
-  isError = signal<string | null>(null);
   countries = signal<Country[]>([]);
+  isError = signal(false);
 
-  onSearch(query: string) {
-    if (this.isLoading()) {
-      return;
-    }
+  constructor(private countryService: CountryService) {}
 
-    this.isLoading.set(true);
+  onSearch(term: string) {
+    this.isError.set(false);
 
-    this.countryService.searchByCountry(query).subscribe({
-      next: (countries) => {
-        this.isLoading.set(false);
-        this.countries.set(countries);
+    this.countryService.searchByCountry(term).subscribe({
+      next: (resp) => {
+        this.countries.set(resp);
+        if (resp.length === 0) {
+          this.isError.set(true);
+        }
       },
-      error: (err) => {
-        this.isLoading.set(false);
-        this.countries.set([]);
-        this.isError.set('No se encontró un país con esa capital');
-      },
+      error: () => this.isError.set(true),
     });
   }
 }

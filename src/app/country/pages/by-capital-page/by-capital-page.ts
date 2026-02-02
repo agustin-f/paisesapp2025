@@ -1,14 +1,17 @@
 import { Country } from './../../interfaces/country.interface';
-import { Component, inject, signal } from '@angular/core';
-import { SearchInputComponent } from '../../components/country-search-input/country-search-input';
 import { CountryList } from '../../components/country-list/country-list';
 import { CountryMapper } from '../../mappers/mapper.country';
 import { CountryService } from '../../services/country';
 import { RESTCountry } from '../../interfaces/rest-countries.interfaces';
+import { Component, inject, signal } from '@angular/core';
+import {
+  SearchInputComponent,
+  CountrySearchInputComponent,
+} from '../../components/country-search-input/country-search-input';
 
 @Component({
   selector: 'app-by-capital-page',
-  imports: [SearchInputComponent, CountryList],
+  imports: [SearchInputComponent, CountryList, CountrySearchInputComponent],
   templateUrl: './by-capital-page.html',
   styleUrl: './by-capital-page.css',
 })

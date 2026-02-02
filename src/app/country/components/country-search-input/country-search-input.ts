@@ -1,11 +1,13 @@
-import { Component, input, output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'country-search-input',
-  imports: [],
   templateUrl: './country-search-input.html',
 })
-export class SearchInputComponent {
-  placeholder = input('Buscar');
-  value = output<string>();
+export class CountrySearchInputComponent {
+  @Output() value = new EventEmitter<string>();
+
+  onInputChange(term: string) {
+    this.value.emit(term); // emite un string
+  }
 }
