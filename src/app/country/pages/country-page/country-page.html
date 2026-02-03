@@ -1,0 +1,9 @@
+<!--  -->
+@if( countryResource.error() ) {
+Error 404
+}
+
+<!--  -->
+@if (countryResource.isLoading()) {
+<h1 class="text-3xl">Cargando...</h1>
+}

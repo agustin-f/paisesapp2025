@@ -1,10 +1,11 @@
 import { Country } from './../../interfaces/country.interface';
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, resource, signal } from '@angular/core';
 import { SearchInputComponent } from '../../components/country-search-input/country-search-input';
 import { CountryList } from '../../components/country-list/country-list';
 import { CountryMapper } from '../../mappers/mapper.country';
 import { CountryService } from '../../services/country';
 import { RESTCountry } from '../../interfaces/rest-countries.interfaces';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-by-capital-page',
@@ -14,7 +15,19 @@ import { RESTCountry } from '../../interfaces/rest-countries.interfaces';
 })
 export class ByCapitalPage {
   countryService = inject(CountryService);
+  query = signal('');
 
+  countryResource = resource({
+    params: () => ({ query: this.query() }),
+    loader: async ({ params }) => {
+      if (!params.query) return [];
+
+      return await firstValueFrom(this.countryService.searchByCapital(params.query));
+    },
+  });
+}
+
+/*
   isLoading = signal(false);
   isError = signal<string | null>(null);
   countries = signal<Country[]>([]);
@@ -39,3 +52,4 @@ export class ByCapitalPage {
     });
   }
 }
+*/

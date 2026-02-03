@@ -7,13 +7,10 @@ export const routes: Routes = [
     component: HomePage,
   },
 
-{
-  path: 'country',
-  loadChildren: () =>
-    import('../app/country/country.routes').then(m => m.countryRoutes),
-},
-
-
+  {
+    path: 'country',
+    loadChildren: () => import('./country/country.routes').then((m) => m.countryRoutes),
+  },
 
   {
     path: '**',
