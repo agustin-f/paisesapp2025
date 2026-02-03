@@ -4,9 +4,6 @@ import { CountryList } from '../../components/country-list/country-list';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { CountryService } from '../../services/country';
 import { firstValueFrom, of } from 'rxjs';
-import { Country } from '../../interfaces/country.interface';
-import { CountryMapper } from '../../mappers/mapper.country';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-country-page',
@@ -15,7 +12,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './country-page.css',
 })
 export class CountryPage {
-  countryCode = inject(ActivatedRoute).snapshot.params['code'];
   countryService = inject(CountryService);
   query = signal('');
 
