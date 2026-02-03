@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { CountryPage } from '../../pages/by-country-page/country-page';
 
 @Component({
+  standalone: true,
   selector: 'app-country-list',
   imports: [DecimalPipe, RouterLink],
   templateUrl: './country-list.html',
