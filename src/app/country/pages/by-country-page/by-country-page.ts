@@ -6,12 +6,12 @@ import { CountryService } from '../../services/country';
 import { firstValueFrom, of } from 'rxjs';
 
 @Component({
-  selector: 'app-country-page',
+  selector: 'app-by-country-page',
   imports: [CountryList, SearchInputComponent],
-  templateUrl: './country-page.html',
-  styleUrl: './country-page.css',
+  templateUrl: './by-country-page.html',
+  styleUrl: './by-country-page.css',
 })
-export class CountryPage {
+export class ByCountryPage {
   countryService = inject(CountryService);
   query = signal('');
 
