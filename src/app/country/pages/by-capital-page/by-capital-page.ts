@@ -1,16 +1,14 @@
-import { Country } from './../../interfaces/country.interface';
-import { Component, inject, resource, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CountryList } from '../../components/country-list/country-list';
-import { CountryMapper } from '../../mappers/mapper.country';
 import { CountryService } from '../../services/country';
-import { RESTCountry } from '../../interfaces/rest-countries.interfaces';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, of } from 'rxjs';
 import { CountrySearchInputComponent } from '../../components/country-search-input/country-search-input';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { NotFound } from '../../../shared/not-found/not-found';
 
 @Component({
   selector: 'app-by-capital-page',
-  imports: [CountryList, CountrySearchInputComponent],
+  imports: [CountryList, CountrySearchInputComponent, NotFound],
   templateUrl: './by-capital-page.html',
   styleUrl: './by-capital-page.css',
 })
@@ -20,7 +18,7 @@ export class ByCapitalPage {
 
   countryResource = rxResource({
     params: () => ({ query: this.query() }),
-    loader: ({ params }) => {
+    stream: ({ params }: { params: { query: string } }) => {
       if (!params.query) return of([]);
 
       return this.countryService.searchByCapital(params.query);

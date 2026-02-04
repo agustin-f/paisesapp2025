@@ -12,7 +12,7 @@ import { CountryInformation } from './country-information/country-information';
   styleUrl: './country-page.scss',
   imports: [NotFound, CountryInformation],
 })
-export class CountryPage {
+export class CountryPageComponent {
   countryCode = inject(ActivatedRoute).snapshot.params['code'];
   countryService = inject(CountryService);
 
