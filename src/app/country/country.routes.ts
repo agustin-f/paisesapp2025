@@ -3,7 +3,8 @@ import { ByCapitalPage } from './pages/by-capital-page/by-capital-page';
 import { CountryLayout } from './layouts/country-layout/country-layout';
 import { ByRegionPage } from './pages/by-region-page/by-region-page';
 import { ByCountryPage } from './pages/by-country-page/by-country-page';
-import { CountryPage } from './pages/country-page/country-page';
+import { CountryPage } from './pages/by-country-page/country-page';
+import { NotFound } from '../shared/not-found/not-found';
 
 export const countryRoutes: Routes = [
   {
@@ -26,8 +27,9 @@ export const countryRoutes: Routes = [
       {
         path: 'by/:code',
         component: CountryPage,
-      },
-
+      }
+      { path: '', redirectTo: 'by-capital', pathMatch: 'full' },
+      ,
       {
         path: '**',
         redirectTo: 'by-capital',
